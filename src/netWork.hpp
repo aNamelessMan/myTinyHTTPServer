@@ -26,6 +26,8 @@ int getListenfd(const char* ip, int port){
     int listenfd = socket(AF_INET, SOCK_STREAM, 0);
     checkRetVal("socket", listenfd);
 
+    setreuse(listenfd);
+
     int ret = 0;
     ret = bind(listenfd, (struct sockaddr*)&address, sizeof(address));
     checkRetVal("bind", ret);
